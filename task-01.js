@@ -5,6 +5,12 @@
 // повертає false, callback приймає елемент масиву
 
 let every = (arr, callback) => console.log(callback(arr))
-let check = arr => Math.max(...arr) < 10
+// let check = arr => Math.max(...arr) < 10
+let check = arr => {
+  for(let el of arr)
+    if(el > 10)
+      return false
+  return true
+}
 every([1, 2, 3, 4, 5], check) // true (перевіряємо чи елементи < 10)
 every([2, 45, 67, 34], check) // false (перевіряємо чи елементи > 10)

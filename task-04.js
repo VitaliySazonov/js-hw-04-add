@@ -27,5 +27,15 @@ let showDeliveryStatus = (arr) => {
   }
 }
 
+// другой способ )
+// let showDeliveryStatus = (arr) => {
+//   for(let el of arr) {
+//     let values = Object.values(el)
+//     if (!!~values.indexOf(100)) console.log('Done')
+//     if (!!~values.indexOf(50)) console.log('In progress')
+//     if (!!~values.indexOf(null)) console.log('Ready for delivery')
+//   }
+// }
+
 showDeliveryStatus(ordersA) // "In Progress", "Done", "Ready for delivery"
 showDeliveryStatus(ordersB) // "In progress", "Not Ordered", "Ready for delivery"

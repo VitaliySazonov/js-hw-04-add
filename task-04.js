@@ -17,25 +17,21 @@ const ordersB = [
   { name: "Tablet", price: 5000, deliveryProgress: null, type: 2 },
 ];
 
-let showDeliveryStatus = (arr) => {
-  for(let el of arr) {
-    console.log(
-      !el.deliveryProgress ? 'Ready for delivery' :
-        el.deliveryProgress === 100 ? 'Done' :
-          'In progress'
-    )
-  }
+let deliveryStatus = val => {
+  return !val ? 'Ready for delivery' :
+    val === 100 ? 'Done' :
+      'In progress'
 }
 
-// другой способ )
-// let showDeliveryStatus = (arr) => {
-//   for(let el of arr) {
-//     let values = Object.values(el)
-//     if (!!~values.indexOf(100)) console.log('Done')
-//     if (!!~values.indexOf(50)) console.log('In progress')
-//     if (!!~values.indexOf(null)) console.log('Ready for delivery')
-//   }
-// }
+let showDeliveryStatus = arr => {
+  let statuses = []
+  for(let el of arr)
+    statuses[el.type] = deliveryStatus(el.deliveryProgress)
+  let result = []
+  for (let item of statuses)
+    !item ? result.push('Not Ordered') : result.push(item)
+  console.log(result)
+}
 
 showDeliveryStatus(ordersA) // "In Progress", "Done", "Ready for delivery"
 showDeliveryStatus(ordersB) // "In progress", "Not Ordered", "Ready for delivery"
